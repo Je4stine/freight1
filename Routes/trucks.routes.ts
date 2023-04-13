@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 //create Trucks
-router.get('/trucks', async (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
     try {
         const trucks = await Truck.findAll();
         res.json(trucks);
@@ -17,7 +17,7 @@ router.get('/trucks', async (req: Request, res: Response) => {
 
 
 
-router.get('/trucks/:id', async (req: Request, res: Response) => {
+router.get('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
       const trucks = await Truck.findByPk(id);
@@ -32,21 +32,25 @@ router.get('/trucks/:id', async (req: Request, res: Response) => {
     }
   });
 
-router.post('/trucks', async (req: Request, res: Response) => {
-    const { brand, load, capacity, year, numberOfRepairs } = req.body;
+router.post ('/', async (req: Request, res: Response) => {
+    // const { brand, load, capacity, year, numberOfRepairs } = req.body;
     try {
-      const trucks = await Truck.create({
-        brand, load, capacity, year, numberOfRepairs
-      });
-      res.status(201).json(trucks);
+        if (!req.body) {
+            return res.status(400).json({ message: 'Request body is missing' });
+        }
+        const { brand, load, capacity, year, numberOfRepairs } = req.body;
+        const trucks = await Truck.create({
+            brand, load, capacity, year, numberOfRepairs
+        });
+        res.status(201).json(trucks);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
   });
 
 
-router.put('/trucks/:id', async (req: Request, res: Response) => {
+router.put('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     const { brand, load, capacity, year, numberOfRepairs } = req.body;
     try {
@@ -66,7 +70,7 @@ router.put('/trucks/:id', async (req: Request, res: Response) => {
   });
 
 
-router.delete('/trucks/:id', async (req: Request, res: Response) => {
+router.delete('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
       const trucks = await Truck.findByPk(id);

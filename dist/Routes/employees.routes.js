@@ -16,7 +16,7 @@ const express_1 = __importDefault(require("express"));
 const employees_1 = __importDefault(require("../Models/employees"));
 const router = express_1.default.Router();
 //create employee
-router.get('/employees', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const employees = yield employees_1.default.findAll();
         res.json(employees);
@@ -26,7 +26,7 @@ router.get('/employees', (req, res) => __awaiter(void 0, void 0, void 0, functio
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.get('/employees/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
         const employee = yield employees_1.default.findByPk(id);
@@ -42,7 +42,7 @@ router.get('/employees/:id', (req, res) => __awaiter(void 0, void 0, void 0, fun
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.post('/employees', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, surname, seniority, category, specialization } = req.body;
     try {
         const employee = yield employees_1.default.create({
@@ -59,7 +59,7 @@ router.post('/employees', (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.put('/employees/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.put('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { name, surname, seniority, category, specialization } = req.body;
     try {
@@ -83,7 +83,7 @@ router.put('/employees/:id', (req, res) => __awaiter(void 0, void 0, void 0, fun
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.delete('/employees/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
         const employee = yield employees_1.default.findByPk(id);

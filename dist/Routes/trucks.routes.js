@@ -16,7 +16,7 @@ const express_1 = __importDefault(require("express"));
 const trucks_1 = __importDefault(require("../Models/trucks"));
 const router = express_1.default.Router();
 //create Trucks
-router.get('/trucks', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const trucks = yield trucks_1.default.findAll();
         res.json(trucks);
@@ -26,7 +26,7 @@ router.get('/trucks', (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.get('/trucks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
         const trucks = yield trucks_1.default.findByPk(id);
@@ -42,9 +42,13 @@ router.get('/trucks/:id', (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.post('/trucks', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { brand, load, capacity, year, numberOfRepairs } = req.body;
+router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    // const { brand, load, capacity, year, numberOfRepairs } = req.body;
     try {
+        if (!req.body) {
+            return res.status(400).json({ message: 'Request body is missing' });
+        }
+        const { brand, load, capacity, year, numberOfRepairs } = req.body;
         const trucks = yield trucks_1.default.create({
             brand, load, capacity, year, numberOfRepairs
         });
@@ -55,7 +59,7 @@ router.post('/trucks', (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.put('/trucks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.put('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { brand, load, capacity, year, numberOfRepairs } = req.body;
     try {
@@ -75,7 +79,7 @@ router.put('/trucks/:id', (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.delete('/trucks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
         const trucks = yield trucks_1.default.findByPk(id);

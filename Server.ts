@@ -10,7 +10,7 @@ const app: Express = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
 
 
 app.get("/", (req: Request, res: Response) => {
@@ -18,11 +18,11 @@ app.get("/", (req: Request, res: Response) => {
   });
 
 
-app.use('/api', employeeRoute);
+app.use('/api/employees', employeeRoute);
 
-app.use('/api', shipmentRoute);
+app.use('/api/shipment', shipmentRoute);
 
-app.use('/api', trucksRoute);
+app.use('/api/truck', trucksRoute);
 
 app.listen(8080, () => {
   console.log('Server listening on port 8080');

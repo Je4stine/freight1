@@ -16,7 +16,7 @@ const express_1 = __importDefault(require("express"));
 const trips_1 = __importDefault(require("../Models/trips"));
 const router = express_1.default.Router();
 //create Trips
-router.get('/tripss', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const trips = yield trips_1.default.findAll();
         res.json(trips);
@@ -26,7 +26,7 @@ router.get('/tripss', (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.get('/trips/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
         const trips = yield trips_1.default.findByPk(id);
@@ -42,7 +42,7 @@ router.get('/trips/:id', (req, res) => __awaiter(void 0, void 0, void 0, functio
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.post('/trips', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { brand, load, capacity, year, numberOfRepairs } = req.body;
     try {
         const trips = yield trips_1.default.create({
@@ -55,7 +55,7 @@ router.post('/trips', (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.put('/trips/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.put('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { brand, load, capacity, year, numberOfRepairs } = req.body;
     try {
@@ -75,7 +75,7 @@ router.put('/trips/:id', (req, res) => __awaiter(void 0, void 0, void 0, functio
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.delete('/trips/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
         const trips = yield trips_1.default.findByPk(id);

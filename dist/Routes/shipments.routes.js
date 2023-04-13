@@ -16,7 +16,7 @@ const express_1 = __importDefault(require("express"));
 const shipments_1 = __importDefault(require("../Models/shipments"));
 const router = express_1.default.Router();
 //create Shipment
-router.get('/shipment', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const shipments = yield shipments_1.default.findAll();
         res.json(shipments);
@@ -27,7 +27,7 @@ router.get('/shipment', (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 }));
 // get shipment by ID
-router.get('/shipments/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
         const shipment = yield shipments_1.default.findByPk(id);
@@ -43,7 +43,7 @@ router.get('/shipments/:id', (req, res) => __awaiter(void 0, void 0, void 0, fun
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.post('/shipment', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { sender, phone1, phone2, destination, value } = req.body;
     try {
         const shipment = yield shipments_1.default.create({
@@ -56,7 +56,7 @@ router.post('/shipment', (req, res) => __awaiter(void 0, void 0, void 0, functio
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.put('/shipment/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.put('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { sender, phone1, phone2, destination, value } = req.body;
     try {
@@ -76,7 +76,7 @@ router.put('/shipment/:id', (req, res) => __awaiter(void 0, void 0, void 0, func
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.delete('/shipment/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
         const shipments = yield shipments_1.default.findByPk(id);

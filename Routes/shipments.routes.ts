@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 //create Shipment
-router.get('/shipment', async (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
     try {
         const shipments = await Shipment.findAll();
         res.json(shipments);
@@ -20,7 +20,7 @@ router.get('/shipment', async (req: Request, res: Response) => {
 
 // get shipment by ID
 
-router.get('/shipments/:id', async (req: Request, res: Response) => {
+router.get('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
       const shipment = await Shipment.findByPk(id);
@@ -36,7 +36,7 @@ router.get('/shipments/:id', async (req: Request, res: Response) => {
   });
 
 
-router.post('/shipment', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
     const {  sender, phone1, phone2, destination,value } = req.body;
     try {
       const shipment = await Shipment.create({
@@ -50,7 +50,7 @@ router.post('/shipment', async (req: Request, res: Response) => {
   });
 
 
-router.put('/shipment/:id', async (req: Request, res: Response) => {
+router.put('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     const {  sender, phone1, phone2, destination,value } = req.body;
     try {
@@ -70,7 +70,7 @@ router.put('/shipment/:id', async (req: Request, res: Response) => {
   });
 
 
-router.delete('/shipment/:id', async (req: Request, res: Response) => {
+router.delete('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
       const shipments = await Shipment.findByPk(id);

@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 //create employee
-router.get('/employees', async (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
     try {
         const employees = await Employee.findAll();
         res.json(employees);
@@ -17,7 +17,7 @@ router.get('/employees', async (req: Request, res: Response) => {
 
 
 
-router.get('/employees/:id', async (req: Request, res: Response) => {
+router.get('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
       const employee = await Employee.findByPk(id);
@@ -32,7 +32,7 @@ router.get('/employees/:id', async (req: Request, res: Response) => {
     }
   });
 
-router.post('/employees', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
     const { name, surname, seniority, category, specialization } = req.body;
     try {
       const employee = await Employee.create({
@@ -50,7 +50,7 @@ router.post('/employees', async (req: Request, res: Response) => {
   });
 
 
-router.put('/employees/:id', async (req: Request, res: Response) => {
+router.put('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     const { name, surname, seniority, category, specialization } = req.body;
     try {
@@ -74,7 +74,7 @@ router.put('/employees/:id', async (req: Request, res: Response) => {
   });
 
 
-router.delete('/employees/:id', async (req: Request, res: Response) => {
+router.delete('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
       const employee = await Employee.findByPk(id);

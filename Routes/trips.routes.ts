@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 //create Trips
-router.get('/tripss', async (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
     try {
         const trips = await Trip.findAll();
         res.json(trips);
@@ -17,7 +17,7 @@ router.get('/tripss', async (req: Request, res: Response) => {
 
 
 
-router.get('/trips/:id', async (req: Request, res: Response) => {
+router.get('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
       const trips = await Trip.findByPk(id);
@@ -32,7 +32,7 @@ router.get('/trips/:id', async (req: Request, res: Response) => {
     }
   });
 
-router.post('/trips', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
     const { brand, load, capacity, year, numberOfRepairs } = req.body;
     try {
       const trips = await Trip.create({
@@ -46,7 +46,7 @@ router.post('/trips', async (req: Request, res: Response) => {
   });
 
 
-router.put('/trips/:id', async (req: Request, res: Response) => {
+router.put('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     const { brand, load, capacity, year, numberOfRepairs } = req.body;
     try {
@@ -65,8 +65,9 @@ router.put('/trips/:id', async (req: Request, res: Response) => {
     }
   });
 
+  
 
-router.delete('/trips/:id', async (req: Request, res: Response) => {
+router.delete('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
       const trips = await Trip.findByPk(id);

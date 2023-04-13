@@ -1,4 +1,5 @@
 import { Model, Sequelize, DataTypes } from 'sequelize';
+import { sequelize } from '../sequelize';
 
 
 export default class Shipments extends Model {
@@ -10,7 +11,6 @@ export default class Shipments extends Model {
   public value?: string;
 }
 
-export const ShipmentMap = (sequelize: Sequelize) => {
   Shipments.init({
     id: {
       type: DataTypes.INTEGER,
@@ -44,7 +44,5 @@ export const ShipmentMap = (sequelize: Sequelize) => {
   }, {
     sequelize,
     tableName: 'shipments',
-    timestamps: false
+ 
   });
-  Shipments.sync();
-}

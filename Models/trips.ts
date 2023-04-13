@@ -1,4 +1,5 @@
 import { Model, Sequelize, DataTypes } from 'sequelize';
+import { sequelize } from '../sequelize';
 
 
 export default class Trips extends Model {
@@ -6,7 +7,7 @@ export default class Trips extends Model {
   public route?: string;
 }
 
-export const ShipmentMap = (sequelize: Sequelize) => {
+
   Trips.init({
     id: {
       type: DataTypes.INTEGER,
@@ -22,5 +23,3 @@ export const ShipmentMap = (sequelize: Sequelize) => {
     tableName: 'trips',
     timestamps: false
   });
-  Trips.sync();
-}

@@ -1,4 +1,5 @@
 import { Model, Sequelize, DataTypes } from 'sequelize';
+import { sequelize } from '../sequelize';
 
 
 export default class Trucks extends Model {
@@ -11,7 +12,6 @@ export default class Trucks extends Model {
 }
 
 
-export const TrackMap = (sequelize: Sequelize) => {
   Trucks.init({
     id: {
       type: DataTypes.INTEGER,
@@ -43,5 +43,3 @@ export const TrackMap = (sequelize: Sequelize) => {
     tableName: 'trucks',
     timestamps: false
   });
-  Trucks.sync();
-}
