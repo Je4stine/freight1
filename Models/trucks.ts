@@ -10,6 +10,7 @@ export default class Trucks extends Model {
   public numberOfRepairs?: number;
 }
 
+
 export const TrackMap = (sequelize: Sequelize) => {
   Trucks.init({
     id: {

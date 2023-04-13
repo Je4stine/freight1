@@ -13,28 +13,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const trucks_1 = __importDefault(require("../Models/trucks"));
+const trips_1 = __importDefault(require("../Models/trips"));
 const router = express_1.default.Router();
-//create Trucks
-router.get('/trucks', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+//create Trips
+router.get('/tripss', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const trucks = yield trucks_1.default.findAll();
-        res.json(trucks);
+        const trips = yield trips_1.default.findAll();
+        res.json(trips);
     }
     catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.get('/trucks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/trips/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
-        const trucks = yield trucks_1.default.findByPk(id);
-        if (!trucks) {
-            res.status(404).json({ message: 'Trucks not found' });
+        const trips = yield trips_1.default.findByPk(id);
+        if (!trips) {
+            res.status(404).json({ message: 'Trip not found' });
         }
         else {
-            res.json(trucks);
+            res.json(trips);
         }
     }
     catch (error) {
@@ -42,32 +42,32 @@ router.get('/trucks/:id', (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.post('/trucks', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/trips', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { brand, load, capacity, year, numberOfRepairs } = req.body;
     try {
-        const trucks = yield trucks_1.default.create({
+        const trips = yield trips_1.default.create({
             brand, load, capacity, year, numberOfRepairs
         });
-        res.status(201).json(trucks);
+        res.status(201).json(trips);
     }
     catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.put('/trucks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.put('/trips/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { brand, load, capacity, year, numberOfRepairs } = req.body;
     try {
-        const trucks = yield trucks_1.default.findByPk(id);
-        if (!trucks) {
-            res.status(404).json({ message: 'Trucks not found' });
+        const trips = yield trips_1.default.findByPk(id);
+        if (!trips) {
+            res.status(404).json({ message: 'Trip not found' });
         }
         else {
-            yield trucks.update({
+            yield trips.update({
                 brand, load, capacity, year, numberOfRepairs
             });
-            res.json(trucks);
+            res.json(trips);
         }
     }
     catch (error) {
@@ -75,15 +75,15 @@ router.put('/trucks/:id', (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
-router.delete('/trucks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.delete('/trips/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
-        const trucks = yield trucks_1.default.findByPk(id);
-        if (!trucks) {
-            res.status(404).json({ message: 'Trucks not found' });
+        const trips = yield trips_1.default.findByPk(id);
+        if (!trips) {
+            res.status(404).json({ message: 'Trip not found' });
         }
         else {
-            yield trucks.destroy();
+            yield trips.destroy();
             res.sendStatus(204);
         }
     }

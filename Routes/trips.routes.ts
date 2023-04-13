@@ -1,14 +1,14 @@
 import express, { Request, Response } from 'express';
-import Truck from "../Models/trucks";
+import Trip from "../Models/trips";
 
 const router = express.Router();
 
 
-//create Trucks
-router.get('/trucks', async (req: Request, res: Response) => {
+//create Trips
+router.get('/tripss', async (req: Request, res: Response) => {
     try {
-        const trucks = await Truck.findAll();
-        res.json(trucks);
+        const trips = await Trip.findAll();
+        res.json(trips);
       } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -17,14 +17,14 @@ router.get('/trucks', async (req: Request, res: Response) => {
 
 
 
-router.get('/trucks/:id', async (req: Request, res: Response) => {
+router.get('/trips/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
-      const trucks = await Truck.findByPk(id);
-      if (!trucks) {
-        res.status(404).json({ message: 'Trucks not found' });
+      const trips = await Trip.findByPk(id);
+      if (!trips) {
+        res.status(404).json({ message: 'Trip not found' });
       } else {
-        res.json(trucks);
+        res.json(trips);
       }
     } catch (error) {
       console.error(error);
@@ -32,13 +32,13 @@ router.get('/trucks/:id', async (req: Request, res: Response) => {
     }
   });
 
-router.post('/trucks', async (req: Request, res: Response) => {
+router.post('/trips', async (req: Request, res: Response) => {
     const { brand, load, capacity, year, numberOfRepairs } = req.body;
     try {
-      const trucks = await Truck.create({
+      const trips = await Trip.create({
         brand, load, capacity, year, numberOfRepairs
       });
-      res.status(201).json(trucks);
+      res.status(201).json(trips);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Internal server error' });
@@ -46,18 +46,18 @@ router.post('/trucks', async (req: Request, res: Response) => {
   });
 
 
-router.put('/trucks/:id', async (req: Request, res: Response) => {
+router.put('/trips/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     const { brand, load, capacity, year, numberOfRepairs } = req.body;
     try {
-      const trucks = await Truck.findByPk(id);
-      if (!trucks) {
-        res.status(404).json({ message: 'Trucks not found' });
+      const trips = await Trip.findByPk(id);
+      if (!trips) {
+        res.status(404).json({ message: 'Trip not found' });
       } else {
-        await trucks.update({
+        await trips.update({
             brand, load, capacity, year, numberOfRepairs
         });
-        res.json(trucks);
+        res.json(trips);
       }
     } catch (error) {
       console.error(error);
@@ -66,14 +66,14 @@ router.put('/trucks/:id', async (req: Request, res: Response) => {
   });
 
 
-router.delete('/trucks/:id', async (req: Request, res: Response) => {
+router.delete('/trips/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
-      const trucks = await Truck.findByPk(id);
-      if (!trucks) {
-        res.status(404).json({ message: 'Trucks not found' });
+      const trips = await Trip.findByPk(id);
+      if (!trips) {
+        res.status(404).json({ message: 'Trip not found' });
       } else {
-        await trucks.destroy();
+        await trips.destroy();
         res.sendStatus(204);
       }
     } catch (error) {
