@@ -75,7 +75,7 @@ router.delete('/:id', async (req: Request, res: Response) => {
     try {
       const shipments = await Shipment.findByPk(id);
       if (!shipments) {
-        res.status(404).json({ message: 'Shipment not found' });
+        res.status(404).json({ message: 'Trip not found' });
       } else {
         await shipments.destroy();
         res.sendStatus(204);

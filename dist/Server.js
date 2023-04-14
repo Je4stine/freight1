@@ -20,3 +20,4 @@ app.use('/api/truck', trucks_routes_1.default);
 app.listen(8080, () => {
     console.log('Server listening on port 8080');
 });
+exports.default = app;

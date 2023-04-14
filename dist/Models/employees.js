@@ -19,15 +19,15 @@ Employee.init({
         allowNull: false,
     },
     seniority: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: sequelize_1.DataTypes.STRING(50),
         allowNull: false,
     },
     category: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: sequelize_1.DataTypes.STRING(50),
         allowNull: false,
     },
     specialization: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: sequelize_1.DataTypes.STRING(50),
         allowNull: false,
     },
 }, {

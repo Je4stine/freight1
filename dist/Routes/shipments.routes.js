@@ -81,7 +81,7 @@ router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const shipments = yield shipments_1.default.findByPk(id);
         if (!shipments) {
-            res.status(404).json({ message: 'Shipment not found' });
+            res.status(404).json({ message: 'Trip not found' });
         }
         else {
             yield shipments.destroy();

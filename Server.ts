@@ -27,3 +27,6 @@ app.use('/api/truck', trucksRoute);
 app.listen(8080, () => {
   console.log('Server listening on port 8080');
 });
+
+
+export default app

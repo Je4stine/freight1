@@ -5,9 +5,9 @@ class Employee extends Model {
   public id!: number;
   public name!: string;
   public surname!: string;
-  public seniority!: number;
-  public category!: number;
-  public specialization!: number;
+  public seniority!: string;
+  public category!: string;
+  public specialization!: string;
 }
 
 Employee.init(
@@ -26,15 +26,15 @@ Employee.init(
       allowNull: false,
     },
     seniority: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(50),
       allowNull: false,
     },
     category: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(50),
       allowNull: false,
     },
     specialization: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(50),
       allowNull: false,
     },
   },

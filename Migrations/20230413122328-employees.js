@@ -18,23 +18,23 @@ module.exports = {
       allowNull: false,
     },
     seniority: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING(50),
       allowNull: false,
     },
     category: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING(50),
       allowNull: false,
     },
     specialization: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING(50),
       allowNull: false,
     },
     createdAt: {
-      type: Sequelize.DATE,
+      type: Sequelize.STRING(50),
       allowNull: false,
     },
     updatedAt: {
-      type: Sequelize.DATE,
+      type: Sequelize.STRING(50),
       allowNull: false,
     },
   });

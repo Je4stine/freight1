@@ -33,10 +33,10 @@ router.get('/:id', async (req: Request, res: Response) => {
   });
 
 router.post('/', async (req: Request, res: Response) => {
-    const { brand, load, capacity, year, numberOfRepairs } = req.body;
+    const { route } = req.body;
     try {
       const trips = await Trip.create({
-        brand, load, capacity, year, numberOfRepairs
+        route
       });
       res.status(201).json(trips);
     } catch (error) {
@@ -48,14 +48,14 @@ router.post('/', async (req: Request, res: Response) => {
 
 router.put('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
-    const { brand, load, capacity, year, numberOfRepairs } = req.body;
+    const { route } = req.body;
     try {
       const trips = await Trip.findByPk(id);
       if (!trips) {
         res.status(404).json({ message: 'Trip not found' });
       } else {
         await trips.update({
-            brand, load, capacity, year, numberOfRepairs
+            route
         });
         res.json(trips);
       }

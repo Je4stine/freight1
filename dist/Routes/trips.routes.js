@@ -43,10 +43,10 @@ router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 }));
 router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { brand, load, capacity, year, numberOfRepairs } = req.body;
+    const { route } = req.body;
     try {
         const trips = yield trips_1.default.create({
-            brand, load, capacity, year, numberOfRepairs
+            route
         });
         res.status(201).json(trips);
     }
@@ -57,7 +57,7 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 }));
 router.put('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { brand, load, capacity, year, numberOfRepairs } = req.body;
+    const { route } = req.body;
     try {
         const trips = yield trips_1.default.findByPk(id);
         if (!trips) {
@@ -65,7 +65,7 @@ router.put('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         }
         else {
             yield trips.update({
-                brand, load, capacity, year, numberOfRepairs
+                route
             });
             res.json(trips);
         }
