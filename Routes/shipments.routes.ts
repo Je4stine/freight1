@@ -25,7 +25,7 @@ router.get('/:id', async (req: Request, res: Response) => {
     try {
       const shipment = await Shipment.findByPk(id);
       if (!shipment) {
-        res.status(404).json({ message: 'Shipment not found' });
+        res.status(404).json({ message: 'Trips not found' });
       } else {
         res.json(shipment);
       }
@@ -56,7 +56,7 @@ router.put('/:id', async (req: Request, res: Response) => {
     try {
       const shipment = await Shipment.findByPk(id);
       if (!shipment) {
-        res.status(404).json({ message: 'Shipment not found' });
+        res.status(404).json({ message: 'Trip not found' });
       } else {
         await shipment.update({
             sender, phone1, phone2, destination,value
